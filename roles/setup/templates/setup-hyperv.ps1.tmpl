@@ -159,7 +159,7 @@ if (-not $vm) {
     $vmParams = @{
         Name = $vmName
         MemoryStartupBytes = 2048MB
-        SwitchName = 'WSL'
+        SwitchName = 'WSL (Hyper-V firewall)'
         NewVHDPath = $vhdxPath
         NewVHDSizeBytes = 40GB
         Generation = 2

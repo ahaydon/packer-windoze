@@ -131,7 +131,7 @@ all:
 
   vars:
     output_dir: '{{ playbook_dir }}/output'
-    platform: qemu
+    platform: hyperv
     openssh_version: v9.4.0.0p1-Beta
     virtio_version: '0.1.240-1'
     setup_username: vagrant
