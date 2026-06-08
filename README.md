@@ -59,9 +59,9 @@ brew install cdrtools pigz
 The Ansible requirements can be installed with
 
 ```bash
-pip install -r requirements.txt
-ansible-galaxy role install -r requirements.yml -p roles
-ansible-galaxy collection install -r requirements.yml -p collections
+uv sync
+uv run -m ansible galaxy role install -r requirements.yml -p roles
+uv run -m ansible galaxy collection install -r requirements.yml -p collections
 ```
 
 ## How to Run
@@ -70,7 +70,7 @@ The imaging process uses Ansible from start to finish and in most cases can be r
 To start the process run the following script:
 
 ```bash
-ansible-playbook main.yml --limit '*2022'
+uv run -m ansible playbook main.yml --limit '*2022'
 ```
 
 This will build the Windows Server 2022 image for QEMU.
