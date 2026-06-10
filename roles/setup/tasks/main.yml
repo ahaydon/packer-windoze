@@ -222,6 +222,7 @@
     ansible_host: '{{ guest_host }}'
     ansible_port: '{{ guest_port }}'
     windoze_version: '{{ changelog[0].version }}'
+    product_key: '{{ product_key | default(omit) }}'
     platform: '{{ platform }}'
     architecture: '{{ architecture }}'
     driver_host_string: '{{ driver_host_string }}'

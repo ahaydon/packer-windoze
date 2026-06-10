@@ -14,13 +14,13 @@
         <!-- https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-international-core-winpe -->
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="{{ architecture }}" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
             <SetupUILanguage>
-                <UILanguage>en-US</UILanguage>
+                <UILanguage>{{ setup_lang }}</UILanguage>
             </SetupUILanguage>
-            <InputLocale>en-US</InputLocale>
-            <SystemLocale>en-US</SystemLocale>
-            <UILanguage>en-US</UILanguage>
-            <UILanguageFallback>en-US</UILanguageFallback>
-            <UserLocale>en-US</UserLocale>
+            <InputLocale>{{ setup_locale }}</InputLocale>
+            <SystemLocale>{{ setup_locale }}</SystemLocale>
+            <UILanguage>{{ setup_lang }}</UILanguage>
+            <UILanguageFallback>{{ setup_lang }}</UILanguageFallback>
+            <UserLocale>{{ setup_locale }}</UserLocale>
         </component>
         <!-- https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-setup -->
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Setup" processorArchitecture="{{ architecture }}" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
@@ -128,11 +128,12 @@
             </ImageInstall>
             <UserData>
                 <ProductKey>
+                    <Key>{{ product_key }}</Key>
                     <WillShowUI>OnError</WillShowUI>
                 </ProductKey>
                 <AcceptEula>true</AcceptEula>
-                <FullName>Vagrant</FullName>
-                <Organization>Vagrant</Organization>
+                <FullName>{{ setup_name }}</FullName>
+                <Organization>{{ setup_org }}</Organization>
             </UserData>
         </component>
     </settings>
@@ -150,10 +151,10 @@
     <settings pass="oobeSystem">
         <!-- https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-international-core -->
         <component name="Microsoft-Windows-International-Core" processorArchitecture="{{ architecture }}" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <InputLocale>en-US</InputLocale>
-            <SystemLocale>en-US</SystemLocale>
-            <UILanguage>en-US</UILanguage>
-            <UserLocale>en-US</UserLocale>
+            <InputLocale>{{ setup_locale }}</InputLocale>
+            <SystemLocale>{{ setup_locale }}</SystemLocale>
+            <UILanguage>{{ setup_lang }}</UILanguage>
+            <UserLocale>{{ setup_locale }}</UserLocale>
         </component>
         <!-- https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-shell-setup -->
         <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="{{ architecture }}" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -166,7 +167,7 @@
                 <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
                 <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
             </OOBE>
-            <TimeZone>UTC</TimeZone>
+            <TimeZone>{{ setup_timezone }}</TimeZone>
             <UserAccounts>
                 <LocalAccounts>
                     <LocalAccount wcm:action="add">

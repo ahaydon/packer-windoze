@@ -134,5 +134,16 @@ all:
     platform: hyperv
     openssh_version: v9.4.0.0p1-Beta
     virtio_version: '0.1.240-1'
-    setup_username: vagrant
-    setup_password: vagrant
+    setup_username: qlikadmin
+    setup_password: Qlik1234
+    setup_locale: en-GB
+    setup_lang: en-US
+    setup_timezone: GMT Standard Time
+    setup_name: Qlik
+    setup_org: Qlik
+
+    choco_packages:
+      - sysinternals
+      - notepadplusplus
+      - googlechrome
+      - vcredist140
