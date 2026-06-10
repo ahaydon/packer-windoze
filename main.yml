@@ -3,7 +3,7 @@
   gather_facts: no
   vars:
     force: False
-    headless: False
+    headless: True
 
   pre_tasks:
   - name: check that the Ansible version is at least 2.13
@@ -67,3 +67,24 @@
 
   roles:
   - box
+
+  tasks:
+    - name: Get next release directory
+      ansible.builtin.set_fact:
+        image_path: "{{ lookup('first_free_path', base_path) }}"
+      vars:
+        base_path: "{{ release_dir }}/win-{{ inventory_hostname }}/{{ changelog[0].version }}"
+      when: release_dir is defined
+
+    - name: Create image release directory
+      ansible.builtin.file:
+        path: "{{ image_path }}"
+        state: directory
+      when: release_dir is defined
+
+    - name: Move built image to releases
+      ansible.builtin.file:
+        src: "{{ box_path }}/Virtual Hard Disks/{{ inventory_hostname }}-vm.vhdx"
+        dest: "{{ image_path }}/{{ inventory_hostname }}-vm.vhdx"
+        state: hard
+      when: release_dir is defined
